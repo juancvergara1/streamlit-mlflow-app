@@ -1,15 +1,10 @@
 import streamlit as st
-import mlflow
-import mlflow.sklearn
 import pandas as pd
+from joblib import load
 
-# Configurar la URI de seguimiento de MLflow
-mlflow_tracking_uri = "https://d8a0-35-230-164-141.ngrok-free.app"  # Cambia por tu URL actual
-mlflow.set_tracking_uri(mlflow_tracking_uri)
-
-# Cargar el modelo desde MLflow
-model_name = "GaussianNB_Workout_Classifier - Workout Prediction"  # Nombre del modelo en MLflow
-loaded_model = mlflow.sklearn.load_model(f"models:/{model_name}/1")
+# Cargar el modelo desde el archivo .pkl
+model_path = "gym_workout_model"  # Ruta al modelo guardado
+loaded_model = load(model_path)
 
 # Título de la aplicación
 st.title("Predicción del Tipo de Ejercicio")
@@ -24,10 +19,10 @@ bmi = weight / (height ** 2)
 session_duration = st.number_input("Duración de la Sesión (horas)", min_value=0.1, max_value=5.0, value=1.5)
 calories_burned = st.number_input("Calorías Quemadas", min_value=50, max_value=2000, value=500)
 
-# Construcción del DataFrame
+# Crear un DataFrame con las entradas
 input_data = pd.DataFrame({
     "Age": [age],
-    "Gender": [1 if gender == "Male" else 0],
+    "Gender": [1 if gender == "Male" else 0],  # Codificar género
     "Weight (kg)": [weight],
     "Height (m)": [height],
     "BMI": [bmi],
@@ -39,3 +34,4 @@ input_data = pd.DataFrame({
 if st.button("Predecir"):
     prediction = loaded_model.predict(input_data)
     st.success(f"El modelo predice que el tipo de ejercicio es: {prediction[0]}")
+
