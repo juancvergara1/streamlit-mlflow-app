@@ -1,4 +1,4 @@
 streamlit
 pandas
-mlflow
-scikit-learn
+joblib
+pycaret
