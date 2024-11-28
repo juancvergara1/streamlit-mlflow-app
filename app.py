@@ -3,7 +3,7 @@ import pandas as pd
 from joblib import load
 
 # Cargar el modelo desde el archivo .pkl
-model_path = "gym_workout_model"  # Ruta al modelo guardado
+model_path = "gym_workout_model.pkl"  # Ruta al modelo guardado
 loaded_model = load(model_path)
 
 # Título de la aplicación
