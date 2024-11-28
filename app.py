@@ -3,7 +3,7 @@ import pandas as pd
 from joblib import load
 
 # Cargar el modelo desde el archivo .pkl
-model_path = "gym_workout_model1.pkl"  # Ruta al modelo guardado
+model_path = "gym_workout_model.pkl1"  # Ruta al modelo guardado
 loaded_model = load(model_path)
 
 # Título de la aplicación
@@ -41,4 +41,7 @@ input_data = pd.DataFrame({
 if st.button("Predecir"):
     try:
         prediction = loaded_model.predict(input_data)
+        st.success(f"El modelo predice que el tipo de ejercicio es: {prediction[0]}")
+    except Exception as e:
+        st.error(f"Ocurrió un error al realizar la predicción: {e}")
 
