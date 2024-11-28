@@ -27,7 +27,7 @@ resting_bpm = st.number_input("Frecuencia Cardíaca en Reposo", min_value=30, ma
 # Crear un DataFrame con las entradas
 input_data = pd.DataFrame({
     "Age": [age],
-    "Gender": [1 if gender == "Male" else 0],  # Codificar género como 1 (Male) o 0 (Female)
+    "Gender": [1 if gender == "Male" else 0],
     "Weight (kg)": [weight],
     "Height (m)": [height],
     "BMI": [bmi],
@@ -35,6 +35,11 @@ input_data = pd.DataFrame({
     "Calories_Burned": [calories_burned],
     "Max_BPM": [max_bpm],
     "Resting_BPM": [resting_bpm],
+    "Avg_BPM": [(max_bpm + resting_bpm) / 2],  # Ejemplo de cálculo
+    "Experience_Level": ["Intermediate"],  # Valor predeterminado
+    "Fat_Percentage": [20.0],  # Valor predeterminado
+    "Water_Intake (liters)": [2.5],  # Valor predeterminado
+    "Workout_Frequency (days/week)": [3],  # Valor predeterminado
 })
 
 # Predicción
